@@ -1,0 +1,17 @@
+body {
+  background: #004500;
+  display: flex;
+}
+
+::placeholder {
+  color: gray;
+}
+
+.image {
+  background-image: url(./../../public/1x.png);
+}
+@media (min-resolution: 2dppx) {
+  .image {
+    background-image: url(./../../public/2x.png);
+  }
+}
