@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
+import { boardReducer } from './boardReducer';
 
-export const rootReducer = combineReducers({
-  posts: postsReducer,
-  comments: commentsReducer,
-  users: usersReducer
-});
+const combineObj = { boardReducer };
+
+export const rootReducer = combineReducers(combineObj);
 
 export type RootState = ReturnType<typeof rootReducer>;

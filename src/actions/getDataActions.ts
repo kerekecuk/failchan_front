@@ -1,0 +1,3 @@
+export const GET_THREADS_REQUEST: String = 'GET_THREADS_REQUEST';
+export const GET_THREADS_SUCCESS: String = 'GET_THREADS_SUCCESS';
+export const GET_THREADS_FAIL: String = 'GET_THREADS_FAIL';

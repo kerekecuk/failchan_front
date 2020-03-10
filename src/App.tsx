@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { BoardHeader } from './components/BoardHeader';
 import { PostThread } from './components/PostThread';
 import { Threads } from './containers/Threads';
