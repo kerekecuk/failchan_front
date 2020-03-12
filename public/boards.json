@@ -1,0 +1,25 @@
+{
+  "boards": [
+    {
+      "id": 1,
+      "slug": "a",
+      "name": "anime",
+      "createdAt": "2018-11-02T13:01:14.169Z",
+      "updatedAt": "2018-11-02T13:01:14.169Z"
+    },
+    {
+      "id": 2,
+      "slug": "b",
+      "name": "bred",
+      "createdAt": "2018-12-03T13:01:14.169Z",
+      "updatedAt": "2018-12-03T13:01:14.169Z"
+    },
+    {
+      "id": 3,
+      "slug": "c",
+      "name": "comics",
+      "createdAt": "2018-12-04T13:01:14.169Z",
+      "updatedAt": "2018-12-04T13:01:14.169Z"
+    }
+  ]
+}

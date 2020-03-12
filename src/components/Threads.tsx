@@ -8,10 +8,10 @@ const mapStateToProps = (store: RootState) => {
   };
 };
 
-class Threads extends React.Component<{}, {}> {
+class ThreadsComponent extends React.Component<{}, {}> {
   render() {
     return <div className="style2">Threads </div>;
   }
 }
 
-export const ThreadsConnected = connect(mapStateToProps)(Threads);
+export const Threads = connect(mapStateToProps)(ThreadsComponent);
