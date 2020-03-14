@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { boardReducer } from './boardReducer';
-import { boardsReducer } from './boardsReducer';
+import { getBoardsReducer, createBoardReducer } from './boardsReducer';
 
-const combineObj = { boardReducer, boardsReducer };
+const combineObj = { boardReducer, getBoardsReducer, createBoardReducer };
 
 export const rootReducer = combineReducers(combineObj);
 
