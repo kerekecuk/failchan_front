@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { BoardsStateType } from '../reducers/boardsReducer';
-import { getBoards, createBoard } from '../actions/getDataActions';
+import { getBoards } from '../actions/getDataActions';
+import { createBoard } from '../actions/createDataActions';
 import { RootState } from '../reducers/rootReducer';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
-import { Board } from '../types/board-types';
 import { CreateBoard } from './CreateBoardElement';
+import { Link, Route } from 'react-router-dom';
 
 const mapStateToProps = (store: RootState) => {
   return {
@@ -34,17 +35,17 @@ class BoardHeaderComponent extends React.Component<BoardsProps, BoardsStateType>
   }
 
   render() {
-    let boards = this.props.boards.boards;
+    let { boards } = this.props.boards;
     let routes;
 
-    /* TODO говно лютое, падает на любой чих */
+    /* TODO падает на любой чих */
     try {
       routes = boards?.map(board => {
         return (
-          <div>
-            <a>
+          <div key={board.slug}>
+            <Link to={board.slug}>
               {board.slug} - {board.name}
-            </a>
+            </Link>
           </div>
         );
       });
@@ -55,7 +56,7 @@ class BoardHeaderComponent extends React.Component<BoardsProps, BoardsStateType>
     return (
       <div>
         {routes}
-        <CreateBoard />
+        <Route exact={true} path="/" component={CreateBoard} />
       </div>
     );
   }

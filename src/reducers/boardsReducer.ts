@@ -1,11 +1,5 @@
-import {
-  GET_BOARDS_REQUEST,
-  GET_BOARDS_SUCCESS,
-  GET_BOARDS_FAIL,
-  CREATE_BOARD_REQUEST,
-  CREATE_BOARD_SUCCESS,
-  CREATE_BOARD_FAIL
-} from '../actions/getDataActions';
+import { GET_BOARDS_REQUEST, GET_BOARDS_SUCCESS, GET_BOARDS_FAIL } from '../actions/getDataActions';
+import { CREATE_BOARD_REQUEST, CREATE_BOARD_SUCCESS, CREATE_BOARD_FAIL } from '../actions/createDataActions';
 import { Thread, Board } from '../types/board-types';
 
 export type BoardsStateType = {

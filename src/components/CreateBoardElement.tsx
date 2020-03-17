@@ -1,9 +1,7 @@
 import * as React from 'react';
-import { createBoard } from '../actions/getDataActions';
-import { RootState } from '../reducers/rootReducer';
+import { createBoard } from '../actions/createDataActions';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
-import { Board } from '../types/board-types';
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(
