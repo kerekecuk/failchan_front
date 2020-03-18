@@ -1,53 +1,44 @@
 import * as React from 'react';
-import { createBoard } from '../actions/createDataActions';
+import { createThread } from '../actions/createDataActions';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
+import { RouteComponentProps } from 'react-router-dom';
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(
     {
-      createBoardAction: createBoard
+      createThreadAction: createThread
     },
     dispatch
   );
 };
 
-type PostTreadProps = ReturnType<typeof mapDispatchToProps>;
+interface PostThreadMatchParams {
+  boardSlug: string;
+}
+
+interface PostThreadProps extends RouteComponentProps<PostThreadMatchParams> {}
+
+type PostTreadProps = ReturnType<typeof mapDispatchToProps> & PostThreadProps;
 
 class PostThreadComponent extends React.Component<PostTreadProps> {
-  boardName: string;
-  boardSlug: string;
+  threadText: string;
 
-  handleChangeName = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    this.boardName = e.target.value;
-  };
-  handleChangeSlug = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    this.boardSlug = e.target.value;
+  handleThreadText = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+    this.threadText = e.target.value;
   };
 
   onClickBtn = () => {
-    this.props.createBoardAction(this.boardName, this.boardSlug);
+    let { boardSlug } = this.props.match.params;
+    this.props.createThreadAction(boardSlug, this.threadText);
   };
 
   render() {
     return (
       <div>
-        <input
-          type="text"
-          id="createboardname"
-          name="boardName"
-          placeholder="input board name"
-          onChange={this.handleChangeName}
-        ></input>
-        <input
-          type="text"
-          id="createboardslug"
-          name="boardSlug"
-          placeholder="input board slug"
-          onChange={this.handleChangeSlug}
-        ></input>
-        <button id="createboardbutton" onClick={this.onClickBtn}>
-          >Create board!
+        <textarea id="createthread" name="threadText" rows={10} onChange={this.handleThreadText}></textarea>
+        <button id="createthreadbutton" onClick={this.onClickBtn}>
+          Create thread!
         </button>
       </div>
     );

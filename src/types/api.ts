@@ -51,3 +51,20 @@ export function createThreadByApi(slug: String, post: String): Promise<any> {
       return data;
     });
 }
+
+export function getThreadsByApi(slug: String): Promise<any> {
+  const requestStr: string = __HOST + '/boards/' + slug + '/threads';
+
+  return fetch(requestStr, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      return data;
+    });
+}
