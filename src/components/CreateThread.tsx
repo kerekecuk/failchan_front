@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createThread } from '../actions/createDataActions';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
-import { RouteComponentProps } from 'react-router-dom';
+import { CreateThreadProps } from '../types/board-types';
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(
@@ -13,15 +13,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   );
 };
 
-interface PostThreadMatchParams {
-  boardSlug: string;
-}
+type CreateTreadProps = ReturnType<typeof mapDispatchToProps> & CreateThreadProps;
 
-interface PostThreadProps extends RouteComponentProps<PostThreadMatchParams> {}
-
-type PostTreadProps = ReturnType<typeof mapDispatchToProps> & PostThreadProps;
-
-class PostThreadComponent extends React.Component<PostTreadProps> {
+class CreateThreadComponent extends React.Component<CreateTreadProps> {
   threadText: string;
 
   handleThreadText = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
@@ -45,4 +39,4 @@ class PostThreadComponent extends React.Component<PostTreadProps> {
   }
 }
 
-export const PostThread = connect(null, mapDispatchToProps)(PostThreadComponent);
+export const CreateThread = connect(null, mapDispatchToProps)(CreateThreadComponent);

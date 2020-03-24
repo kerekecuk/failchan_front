@@ -5,7 +5,7 @@ import { createBoard } from '../actions/createDataActions';
 import { RootState } from '../reducers/rootReducer';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
-import { CreateBoard } from './CreateBoardElement';
+import { CreateBoard } from './CreateBoard';
 import { Link, Route } from 'react-router-dom';
 
 const mapStateToProps = (store: RootState) => {
@@ -17,8 +17,7 @@ const mapStateToProps = (store: RootState) => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(
     {
-      getBoardsAction: getBoards,
-      createBoardAction: createBoard
+      getBoardsAction: getBoards
     },
     dispatch
   );
@@ -29,7 +28,7 @@ type BoardsProps = ReturnType<typeof mapStateToProps> &
     // label: string;
   };
 
-class BoardHeaderComponent extends React.Component<BoardsProps, BoardsStateType> {
+class BoardHeaderComponent extends React.Component<BoardsProps> {
   componentDidMount() {
     this.props.getBoardsAction();
   }

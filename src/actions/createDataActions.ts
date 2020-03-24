@@ -1,15 +1,19 @@
 import { Dispatch, AnyAction } from 'redux';
-import { createBoardByApi, createThreadByApi } from '../types/api';
+import { createBoardByApi, createThreadByApi, createPostByApi } from '../types/api';
 
-export const CREATE_BOARD_REQUEST: String = 'CREATE_BOARD_REQUEST';
-export const CREATE_BOARD_SUCCESS: String = 'CREATE_BOARD_SUCCESS';
-export const CREATE_BOARD_FAIL: String = 'CREATE_BOARD_FAIL';
+export const CREATE_BOARD_REQUEST: string = 'CREATE_BOARD_REQUEST';
+export const CREATE_BOARD_SUCCESS: string = 'CREATE_BOARD_SUCCESS';
+export const CREATE_BOARD_FAIL: string = 'CREATE_BOARD_FAIL';
 
-export const CREATE_THREAD_REQUEST: String = 'CREATE_THREAD_REQUEST';
-export const CREATE_THREAD_SUCCESS: String = 'CREATE_THREAD_SUCCESS';
-export const CREATE_THREAD_FAIL: String = 'CREATE_THREAD_FAIL';
+export const CREATE_THREAD_REQUEST: string = 'CREATE_THREAD_REQUEST';
+export const CREATE_THREAD_SUCCESS: string = 'CREATE_THREAD_SUCCESS';
+export const CREATE_THREAD_FAIL: string = 'CREATE_THREAD_FAIL';
 
-export function createBoard(name: String, slug: String) {
+export const CREATE_POST_REQUEST: string = 'CREATE_POST_REQUEST';
+export const CREATE_POST_SUCCESS: string = 'CREATE_POST_SUCCESS';
+export const CREATE_POST_FAIL: string = 'CREATE_POST_FAIL';
+
+export function createBoard(name: string, slug: string) {
   return (dispatch: Dispatch<AnyAction>) => {
     dispatch({
       type: CREATE_BOARD_REQUEST
@@ -24,7 +28,7 @@ export function createBoard(name: String, slug: String) {
   };
 }
 
-export function createThread(slug: String, post: String) {
+export function createThread(slug: string, post: string) {
   return (dispatch: Dispatch<AnyAction>) => {
     dispatch({
       type: CREATE_THREAD_REQUEST
@@ -33,6 +37,21 @@ export function createThread(slug: String, post: String) {
     createThreadByApi(slug, post).then(result => {
       return dispatch({
         type: CREATE_THREAD_SUCCESS,
+        payload: result
+      });
+    });
+  };
+}
+
+export function createPost(threadId: string, post: string) {
+  return (dispatch: Dispatch<AnyAction>) => {
+    dispatch({
+      type: CREATE_POST_REQUEST
+    });
+
+    createPostByApi(threadId, post).then(result => {
+      return dispatch({
+        type: CREATE_POST_REQUEST,
         payload: result
       });
     });

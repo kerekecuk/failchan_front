@@ -1,15 +1,15 @@
 import { GET_BOARDS_REQUEST, GET_BOARDS_SUCCESS, GET_BOARDS_FAIL } from '../actions/getDataActions';
 import { CREATE_BOARD_REQUEST, CREATE_BOARD_SUCCESS, CREATE_BOARD_FAIL } from '../actions/createDataActions';
-import { Board } from '../types/board-types';
+import { TBoard } from '../types/board-types';
 
 export type BoardsStateType = {
-  boards: Array<Board> | undefined;
+  boards: Array<TBoard> | undefined;
   isFetching: boolean;
   error: string | undefined;
 };
 
 const initialState = {
-  boards: [] as Array<Board> | undefined,
+  boards: [] as Array<TBoard> | undefined,
   isFetching: true,
   error: ''
 };
@@ -17,14 +17,14 @@ const initialState = {
 export type getBoardsActionType = {
   type: typeof GET_BOARDS_REQUEST | typeof GET_BOARDS_SUCCESS | typeof GET_BOARDS_FAIL;
 
-  payload?: Array<Board>;
+  payload?: Array<TBoard>;
   errorMessage?: string;
 };
 
 export type createBoardActionType = {
   type: typeof CREATE_BOARD_REQUEST | typeof CREATE_BOARD_SUCCESS | typeof CREATE_BOARD_FAIL;
 
-  payload?: Array<Board>;
+  payload?: Array<TBoard>;
   errorMessage?: string;
 };
 

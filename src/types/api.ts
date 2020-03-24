@@ -1,7 +1,7 @@
 import { __HOST } from './project_consts';
-import { Board } from './board-types';
+import { TBoard, TThread } from './board-types';
 
-export function getBoardsDataFromApi(): Promise<Array<Board>> {
+export function getBoardsDataFromApi(): Promise<any> {
   const requestStr: string = __HOST + '/boards';
 
   return fetch(requestStr)
@@ -13,7 +13,24 @@ export function getBoardsDataFromApi(): Promise<Array<Board>> {
     });
 }
 
-export function createBoardByApi(name: String, slug: String): Promise<any> {
+export function getThreadsByApi(slug: string): Promise<any> {
+  const requestStr: string = __HOST + '/boards/' + slug + '/threads';
+
+  return fetch(requestStr, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      return data;
+    });
+}
+
+export function createBoardByApi(name: string, slug: string): Promise<any> {
   const requestStr: string = __HOST + '/boards';
   const data = { name: name, slug: slug };
 
@@ -33,7 +50,7 @@ export function createBoardByApi(name: String, slug: String): Promise<any> {
 }
 
 // TODO create with post: Object
-export function createThreadByApi(slug: String, post: String): Promise<any> {
+export function createThreadByApi(slug: string, post: string): Promise<any> {
   const requestStr: string = __HOST + '/boards/' + slug + '/threads';
   const data = { post: { body: post } };
 
@@ -52,8 +69,27 @@ export function createThreadByApi(slug: String, post: String): Promise<any> {
     });
 }
 
-export function getThreadsByApi(slug: String): Promise<any> {
-  const requestStr: string = __HOST + '/boards/' + slug + '/threads';
+export function createPostByApi(threadId: string, post: string): Promise<any> {
+  const requestStr: string = __HOST + '/threads/' + threadId + '/posts';
+  const data = { post: { body: post } };
+
+  return fetch(requestStr, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      return data;
+    });
+}
+
+export function getThreadAndRepliesByApi(threadId: string): Promise<TThread> {
+  const requestStr: string = __HOST + '/threads/' + threadId;
 
   return fetch(requestStr, {
     method: 'GET',
