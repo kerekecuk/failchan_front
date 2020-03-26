@@ -9,6 +9,8 @@ export function getBoardsDataFromApi(): Promise<any> {
       return response.json();
     })
     .then(data => {
+      //console.log('data getBoardsDataFromApi: ', data);
+
       return data.boards;
     });
 }

@@ -20,9 +20,11 @@ export function getBoards() {
     });
 
     getBoardsDataFromApi().then(result => {
+      //console.log('result getBoardsDataFromApi: ', result);
+
       return dispatch({
         type: GET_BOARDS_SUCCESS,
-        payload: result.boards
+        payload: result
       });
     });
   };
@@ -50,6 +52,8 @@ export function getThreadAndReplies(threadId: string) {
     });
 
     getThreadAndRepliesByApi(threadId).then(result => {
+      console.log('getThreadAndRepliesByApi result: ', result);
+
       return dispatch({
         type: GET_THREAD_SUCCESS,
         payload: result

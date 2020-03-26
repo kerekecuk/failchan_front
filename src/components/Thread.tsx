@@ -5,10 +5,11 @@ import { ThreadRouteProps } from '../types/board-types';
 import { RootState } from '../reducers/rootReducer';
 import { Dispatch, AnyAction, bindActionCreators } from 'redux';
 import { getThreadAndReplies } from '../actions/getDataActions';
+import { Post } from '../containers/PostView';
 
 const mapStateToProps = (store: RootState) => {
   return {
-    boardThread: store.threadReducer.thread
+    boardThread: store.threadReducer
   };
 };
 
@@ -31,16 +32,24 @@ class ThreadComponent extends React.Component<ThreadType> {
     this.boardSlug = this.props.match.params.boardSlug;
     this.threadId = this.props.match.params.threadId;
 
-    getThreadAndReplies(this.threadId);
+    this.props.getThreadAndRepliesAction(this.threadId);
   }
 
   render() {
+    const thread = this.props.boardThread;
+    console.log('thread: ', thread);
+
+    const posts = thread.thread?.posts?.map(post => {
+      return <Post key={post.id} post={post}></Post>;
+    });
+
     return (
       <div>
         <CreatePost threadId={this.threadId} />
+        {thread != null && <div> thread id: {thread.thread?.id}</div> && posts}
       </div>
     );
   }
 }
 
-export const Thread = connect(null, null)(ThreadComponent);
+export const Thread = connect(mapStateToProps, mapDispatchToProps)(ThreadComponent);

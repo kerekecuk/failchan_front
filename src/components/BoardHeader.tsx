@@ -37,6 +37,8 @@ class BoardHeaderComponent extends React.Component<BoardsProps> {
     let { boards } = this.props.boards;
     let routes;
 
+    console.log('boards: ', boards);
+
     /* TODO падает на любой чих */
     try {
       routes = boards?.map(board => {
